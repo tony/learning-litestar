@@ -21,7 +21,7 @@ def test_graphql_hello() -> None:
                 "query": r"""
 query {
   hello
-}"""
+}""",
             },
         )
         assert response.status_code == HTTP_200_OK
