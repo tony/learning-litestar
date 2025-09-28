@@ -124,3 +124,6 @@ Ideas for extending the playground:
 
 Enjoy exploring Litestar and Strawberry together!
 
+## License
+
+Distributed under the MIT License. See `LICENSE` for full text.
