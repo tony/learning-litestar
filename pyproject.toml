@@ -24,13 +24,13 @@ dependencies = [
 where = ["src"]
 include = ["app*"]
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
   ### Testing ###
   "pytest",
   "pytest-rerunfailures",
   "pytest-watcher",
-    # Lint
+  # Lint
   "ruff",
   "mypy",
   "typing-extensions",
