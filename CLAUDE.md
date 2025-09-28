@@ -31,7 +31,7 @@ This is a Python web application using Litestar framework with GraphQL support v
 ## Architecture
 
 ### Application Structure
-- **app/__init__.py**: Main application module containing:
+- **src/app/__init__.py**: Main application module containing:
   - REST endpoint at `/` returning "Hello, world!"
   - GraphQL endpoint at `/graphql` with Strawberry GraphQL schema
   - Litestar application instance configured with route handlers

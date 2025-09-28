@@ -208,7 +208,7 @@ wheels = [
 [[package]]
 name = "learning-litestar"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "litestar", extra = ["standard"] },
     { name = "strawberry-graphql", extra = ["debug-server"] },
