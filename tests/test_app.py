@@ -1,4 +1,3 @@
-# Copyright (c) 2024 Tony Narlock
 """Tests for the Litestar HTTP and GraphQL routes."""
 
 from litestar.status_codes import HTTP_200_OK

@@ -1,4 +1,3 @@
-# Copyright (c) 2024 Tony Narlock
 """Application entrypoints for HTTP and GraphQL routes."""
 
 import strawberry
