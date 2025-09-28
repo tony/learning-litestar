@@ -1,10 +1,10 @@
 # Copyright (c) 2024 Tony Narlock
 """Application entrypoints for HTTP and GraphQL routes."""
 
-from typing import ClassVar
-
 import strawberry
 from litestar import Litestar, get
+from litestar.di import Provide
+from strawberry import Private
 from strawberry.litestar import make_graphql_controller
 
 
@@ -12,7 +12,7 @@ from strawberry.litestar import make_graphql_controller
 class Query:
     """Root GraphQL query type."""
 
-    _GREETING: ClassVar[str] = "Hello World"
+    greeting: Private[str] = "Hello World"
 
     @strawberry.field
     def hello(self) -> str:
@@ -23,7 +23,7 @@ class Query:
         str
             Greeting configured for GraphQL responses.
         """
-        return self._GREETING
+        return self.greeting
 
 
 schema = strawberry.Schema(Query)
@@ -33,8 +33,18 @@ GraphQLController = make_graphql_controller(
     path="/graphql",
 )
 
+GraphQLController.dependencies = {
+    **GraphQLController.dependencies,
+    # Query construction is trivial; keep it on the loop, no worker thread needed.
+    "root_value": Provide(Query, sync_to_thread=False),
+}
 
-@get("/")
+
+@get(
+    "/",
+    # Simple string response, tell Litestar it can stay on the event loop.
+    sync_to_thread=False,
+)
 def hello_world() -> str:
     """Return a greeting for the HTTP route.
 
