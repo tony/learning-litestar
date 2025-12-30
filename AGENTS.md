@@ -46,6 +46,32 @@ This is a Python web application using Litestar framework with GraphQL support v
 - **Strict Type Checking**: mypy configured with strict mode enforcing type safety
 - **Comprehensive Linting**: ruff configured with extensive rule sets for code quality
 
+## Doctests
+
+**All functions and methods MUST have working doctests.** Doctests serve as both documentation and tests.
+
+**CRITICAL RULES:**
+- Doctests MUST actually execute - never comment out function calls or similar
+- Doctests MUST NOT be converted to `.. code-block::` as a workaround (code-blocks don't run)
+- If you cannot create a working doctest, **STOP and ask for help**
+
+**Available tools for doctests:**
+- `doctest_namespace` fixtures: `tmp_path`
+- Ellipsis for variable output: `# doctest: +ELLIPSIS`
+- Update `conftest.py` to add new fixtures to `doctest_namespace`
+
+**`# doctest: +SKIP` is NOT permitted** - it's just another workaround that doesn't test anything. Use fixtures properly.
+
+**Using fixtures in doctests:**
+```python
+>>> from litestar.testing import TestClient
+>>> from app import app
+>>> client = TestClient(app)
+>>> response = client.get("/")
+>>> response.status_code
+200
+```
+
 ## Git Commit Standards
 
 ### Commit Message Format
