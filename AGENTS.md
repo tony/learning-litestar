@@ -46,6 +46,29 @@ This is a Python web application using Litestar framework with GraphQL support v
 - **Strict Type Checking**: mypy configured with strict mode enforcing type safety
 - **Comprehensive Linting**: ruff configured with extensive rule sets for code quality
 
+## Classes with fields
+
+**Classes with fields** — `NamedTuple`, dataclasses — document every field in
+an `Attributes` section:
+
+```python
+class RouteCase(NamedTuple):
+    """One request/response pair a lesson exercises.
+
+    Attributes
+    ----------
+    path : str
+        Route path the request targets.
+    expected_status : int
+        Status the handler is expected to return.
+    """
+```
+
+A type says how a field is shaped, not what it holds. Describing each one
+keeps that meaning next to the code, and anything that renders the class —
+autodoc, a REPL, an editor tooltip — has a description to show instead of a
+bare name.
+
 ## Doctests
 
 **All functions and methods MUST have working doctests.** Doctests serve as both documentation and tests.
