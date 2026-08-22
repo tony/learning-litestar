@@ -52,10 +52,11 @@ Test:
 $ uv run pytest
 ```
 
-CI (`.github/workflows/tests.yml`) runs exactly these four, in this order,
-against Python 3.14, plus `uv run py.test` as the test invocation — an alias
-for the same command. Every gate it runs has to pass before a change is
-done.
+CI (`.github/workflows/tests.yml`) runs exactly these four, but lint runs
+before format — `ruff check` then `ruff format --check`, then type-check,
+then test — against Python 3.14, plus `uv run py.test` as the test
+invocation — an alias for the same command. Every gate it runs has to pass
+before a change is done.
 
 Documentation is a gate, not a courtesy: `pyproject.toml` configures
 `--doctest-modules` under `[tool.pytest]`, and `uv run pytest` above
